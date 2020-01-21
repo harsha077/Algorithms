@@ -1,6 +1,5 @@
 package LinkedList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SingleLinkedList {
