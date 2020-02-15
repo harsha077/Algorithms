@@ -1,4 +1,4 @@
-package Recursion;
+package RecursionAndDynamicP;
 
 public class AllStringPermutations {
 

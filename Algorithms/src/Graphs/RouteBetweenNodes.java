@@ -14,11 +14,44 @@ public class RouteBetweenNodes {
 		CreateNodeGraph<String> graph = new CreateNodeGraph<String>();
 		
 		graph.addNode("a");
-		graph.removeNode("a");
-		//System.out.println(findRoute(v1,v2,graph));
+		graph.addNode("b");
+		graph.addNode("c");
+		graph.addNode("d");
+		graph.addNode("e");
+		graph.addEdge("a", "b");
+		graph.addEdge("a", "c");
+		graph.addEdge("c", "d");
+		
+		graph.printAllEdges();
+		
+		//System.out.println(findRoute("e","d",graph));
 	}
 	
-	
+	public static boolean findRoute(String source, String destination,CreateNodeGraph<String> graph) {
+		boolean found = false;
+		Queue<Vertex> queue = new LinkedList<Vertex>();
+		Vertex v = graph.findNode(source);
+		v.setVisitStatus(State.visiting);
+		queue.add(v);
+		Vertex destObj = graph.findNode(destination);
+		while(!queue.isEmpty()) {
+			Vertex currentNode = queue.poll();
+			LinkedList<Vertex> listOfConnections = currentNode.getAdjVertices();
+			
+			for(Vertex item:listOfConnections) {
+				if(!item.getVisitStatus().equals(State.visited))
+				{
+					if(item == destObj) {
+						return true;
+					}
+					item.setVisitStatus(State.visiting);
+					queue.add(item);
+				}
+			}
+			currentNode.setVisitStatus(State.visited);
+		}
+		return found;
+	}
 	
 	
 	//No vertex, Just a regular Hashmap with 
