@@ -5,11 +5,12 @@ import java.util.Arrays;
 public class MinCostOfClimbingChairs {
 
 	public static void main(String ...args) {
-		//int[] arr = {0,1,2,2};
+		int[] arr = {0,1,2,2};
 		//int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
 		//int[] arr = {0,1,2,0};
 		//int[] arr = {0,0,0,1};
-		int[] arr = {0,0,1,0};
+		//int[] arr = {0,0,1,1};
+		//int[] arr = {1,1,0,0};
 		//int[] arr = {1,0,2,4};
 		//int[] arr = {1,0,2,3};
 		//int[] arr = {10,15,20};
@@ -60,7 +61,7 @@ public class MinCostOfClimbingChairs {
             	   j=i+2;
                }
             }
-        }else if(len == 4 || len == 3){
+        }else if(len == 4){
         	int totalValue = 0;
         	if(cost[0]<=cost[1]){
                 startI = 0;
@@ -76,15 +77,17 @@ public class MinCostOfClimbingChairs {
             	if(i == len-1)
             	{
             		if(cost[len-2]<totalValue) {
-            			return cost[len-2];
+            			int val = (len == 4)?cost[len-2]+tab[i]:cost[len-2];
+            			return val;
             		}else {
-            			return tab[i]+cost[i];
+            			return tab[i];
             		}
             	}
             	
             	if(i == len-2) {
             		if(cost[len-2]<totalValue) {
-            			return cost[len-2];
+            			int val = (len == 4)?cost[len-2]+tab[i]:cost[len-2];
+            			return val;
             		}else {
             			return tab[i];
             		}
